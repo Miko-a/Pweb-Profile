@@ -6,18 +6,19 @@
 <body>
     <!-- Heading -->
     <h1>Profil Mahasiswa</h1>
+    <h3>Tugas Pertemuan 2 -Membuat website profil dengan html</h3>
 
     <!-- Paragraf -->
     <p>Halo! Nama saya <b>Farrel Jatmiko Aji</b>. Saya seorang mahasiswa jurusan Teknik Informatika 
     yang tertarik pada pengembangan web dan pemrograman.</p>
 
     <!-- Gambar -->
-    <img src="images/foto.jpg" alt="Foto Profil" width="200">
+    <img src="myFoto.jfif" alt="Foto Profil" width="200">
 
     <!-- List -->
     <h2>Hobi Saya:</h2>
     <ul>
-        <li>Membaca</li>
+        <li>Membaca buku</li>
         <li>Nonton</li>
         <li>Koding</li>
         <li>Main game</li>
