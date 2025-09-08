@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas membuat Form</title>
+</head>
+<body>
+    <p>Nama: Farrel jatmiko Aji</p>
+    NRP: 5025241193
+    Kelas: Pemrograman Web B2
+
+    <p>Latihan membuat tabel:</p>
+    <table border="3" cellpadding="10" cellspacing="2">
+        <caption align="top"> <b>Tabel Daftar Mahasiswa</b></caption>
+        <tr bgcolor="grey"><th rowspan="2"
+            <th align="center"> No</th><th rowspan="2">NPM</th><th rowspan="2">Nama</th><th colspan="2">Nilai</th>
+        </tr>
+        <tr bgcolor="grey"><th>UTS</th><th>UAS</th></tr>
+        <tr>
+            <td align="center" width="20">1.</td>
+            <td align="left" valign="middle" width="80" height="40">06.100.101</td>
+            <td align="left" valign="middle" width="180" height="40">Amin A. Angkasa</td>
+            <td align="center" valign="middle" width="40" height="40">70</td>
+            <td align="center" valign="middle" width="40" height="40">80</td>
+        </tr>
+        <tr>
+            <td align="center" width="20">1.</td>
+            <td align="left" valign="middle" width="80" height="40">06.100.102</td>
+            <td align="left" valign="middle" width="180" height="40">Beni B. Benardi</td>
+            <td align="center" valign="middle" width="40" height="40">70</td>
+            <td align="center" valign="middle" width="40" height="40">80</td>
+        </tr>
+    </table>
+    
+    <br>
+    <br>
+    <br>
+    <p>Latihan membuat form:</p>
+    
+    
+    <form method="post">
+        <table>
+            <caption align="top" >Registration Form</caption>
+            <b>Login: </b> <br>
+            <tr>
+                <td> First Name: </td> <td> <input type="text" name="firstname" size="20>"></td>
+            </tr>
+
+            <tr>
+                <td> Last Name: </td> <td> <input type="text" name="lastname" size="20>"></td>
+            </tr>
+
+            <tr>
+                <td> Email: </td> <td> <input type="email" name="email" size="20>"></td>
+            </tr>
+            
+            <tr>
+                <td> Password: </td> <td> <input type="password" name="password" size="20>"></td>
+            </tr>
+            <tr>
+                <td> Re-type password: </td> <td> <input type="password" name="newpassword" size="20>"></td>
+            </tr>
+            <tr>
+                <td> Contact: </td> <td> <input type="number" name="contact" size="20>"></td>
+            </tr>
+            <tr>
+                <td> Gender: </td> <td><select name="Gender: "> 
+                    <option value="Male"> Male </option>
+                    <option value="Female"> Female </option>
+
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <input type="submit" value="simpan" name="t1">
+        <input type="reset" value="Reset" name="t2">
+    </form>
+    
+    
+</body>
+</html>
