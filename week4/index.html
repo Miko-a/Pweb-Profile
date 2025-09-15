@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>GeeksForGeeks</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        }
+
+        h1 {
+        color: green;
+        }
+
+        .portfolio {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 200px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 10px;
+        }
+
+        .card-content h3 {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .card-content p {
+            font-size: 13px;
+            color: #555;
+        }
+
+        .card-content a {
+            display: inline-block;
+            margin-top: 8px;
+            text-decoration: none;
+            color: green;
+            font-weight: bold;
+        }
+
+        .card-content a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>GeeksforGeeks</h1>
+    <p style="font-family:'Times New Roman', Times, serif"> A Computer Science Portal for Geeks</p>
+    <hr>
+    <h3>Portfolio</h3>
+
+    <div class="portfolio">
+        <div class="card"> 
+            <img src="https://dummyimage.com/200x100/4CAF50/fff&text=HTML" alt="HTML">
+            <div class="card-content">
+                <h3>HTML Tutorials</h3>
+                <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages.</p>
+                
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://dummyimage.com/200x100/2196F3/fff&text=CSS" alt="CSS">
+            <div class="card-content">
+                <h3>CSS Tutorials</h3>
+                <p>CSS (Cascading Style Sheets) is a style sheet language used for describing the presentation of a document written in HTML.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://dummyimage.com/200x100/FF9800/fff&text=PHP" alt="PHP">
+            <div class="card-content">
+                <h3>PHP Tutorials</h3>
+                <p>PHP (Hypertext Preprocessor) is a popular general-purpose scripting language that is especially suited to web development.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://dummyimage.com/200x100/FF5722/fff&text=JS" alt="JavaScript">
+            <div class="card-content">
+                <h3>JavaScript Tutorials</h3>
+                <p>JavaScript is a programming language that allows you to implement complex features on web pages.</p>
+            </div>
+
+    </div>
+</body>
+</html>
