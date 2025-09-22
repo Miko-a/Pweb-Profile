@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Dropdown List</title>
+    <script>
+        const optionsProduct = [
+            "Dekstop",
+            "Laptop",
+            "Smartphone",
+            "Monitor",
+            "Tablet"
+        ];
+
+        const optionsMerk = {
+            "Dekstop": ["MSI", "Apple"],
+            "Laptop": ["Asus", "Lenovo", "HP"],
+            "Smartphone": ["Samsung", "Apple", "Xiaomi"],
+            "Monitor": ["LG", "Samsung", "Dell"],
+            "Tablet": ["Apple", "Samsung", "Huawei"]
+        };
+
+        function productDropdown() {
+            const dropdown = document.getElementById('productDropdown');
+            optionsProduct.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option;
+                opt.textContent = option;
+                dropdown.appendChild(opt);
+            });
+        }
+
+        function merkDropdown(product) {
+            const dropdown = document.getElementById('merkDropdown');
+            dropdown.innerHTML = '<option value=""> -- Select --</option>';
+            if (optionsMerk[product]) {
+                optionsMerk[product].forEach(option => {
+                    const opt = document.createElement('option');
+                    opt.value = option;
+                    opt.textContent = option;
+                    dropdown.appendChild(opt);
+                });
+            }
+        }
+
+        window.onload = function() {
+            productDropdown();
+            document.getElementById('productDropdown').addEventListener('change', function() {
+                merkDropdown(this.value);
+            });
+        };
+    </script>
+</head>
+<body>
+    <h2>Dynamic Dropdown List</h2>
+    <label for="productDropdown">Pilih jenis produk:</label>
+    <select id="productDropdown">
+        <option value="">-- Select --</option>
+    </select>
+
+    <br>
+    <label for="merkDropdown">Pilih jenis merk:</label>
+    <select id="merkDropdown">
+        <option value=""> -- Select --</option>
+    </select>
+</body>
+</html>

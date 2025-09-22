@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Registrasi Mahasiswa</title>
+    <style>
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+        }
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .autocomplete-items div:hover {
+            background-color: #e9e9e9;
+        }
+    </style>
+</head>
+<body>
+    <form autocomplete="off" method="post">
+        <table>
+            <caption align="top">Form Registrasi Mahasiswa</caption>
+            <tr>
+                <td>Nama Mahasiswa:</td>
+                <td>
+                    <div style="position:relative;">
+                        <input id="nama" type="text" name="nama" size="30">
+                        <div id="autocomplete-list" class="autocomplete-items"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>NRP:</td>
+                <td>
+                    <div style="position: relative;">
+                        <input type="text" id="nrp" size="30">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    <div style="position: relative;">
+                        <input id="email" type="text" size="30">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Mata Kuliah:</td>
+                <td>
+                    <select name="matakuliah" id="matakuliah">
+                        <option value="Pemrograman Web">Pemrograman Web</option>
+                        <option value="Basis Data">Basis Data</option>
+                        <option value="Struktur Data dan Algoritma">Struktur Data dan Algoritma</option>
+                        <option value="Jaringan Komputer">Jaringan Komputer</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Dosen:</td>
+                <td>
+                    <select name="dosen" id="dosen"></select>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Simpan" style="background-color: rgb(65,105,225); color: white; border: none; font-size: 13px; padding: 6px 12px; border-radius: 6px;">
+
+        <!-- Cek apakah NRP dan/atau Email kosong -->
+        <script>
+            document.querySelector('form').addEventListener('submit', function(e) {
+                var nrp = document.getElementById('nrp').value.trim();
+                var email = document.getElementById('email').value.trim();
+                if (!nrp && !email) {
+                    window.alert('NRP dan Email tidak boleh kosong!');
+                    e.preventDefault();
+                }
+                else if (!email) {
+                    window.alert('Email tidak boleh kosong!');
+                    e.preventDefault();
+                }
+                else if (!nrp) {
+                    window.alert('NRP tidak boleh kosong!');
+                    e.preventDefault();
+                }
+            });
+        </script>
+    </form>
+
+    <script>
+        // Daftar nama mahasiswa untuk autocomplete
+        const namaMahasiswa = [
+            "Ahmad Fauzi",
+            "Budi Santoso",
+            "Citra Dewi",
+            "Dedi Kurniawan",
+            "Eka Putri",
+            "Fajar Pratama",
+            "Gita Sari",
+            "Hendra Wijaya"
+        ];
+
+        const input = document.getElementById("nama");
+        const autocompleteList = document.getElementById("autocomplete-list");
+
+        input.addEventListener("input", function() {
+            const val = this.value;
+            autocompleteList.innerHTML = "";
+            if (!val) return false;
+            namaMahasiswa.forEach(function(nama) {
+                if (nama.toLowerCase().startsWith(val.toLowerCase())) {
+                    const item = document.createElement("div");
+                    item.innerHTML = "<strong>" + nama.substr(0, val.length) + "</strong>" + nama.substr(val.length);
+                    item.addEventListener("click", function() {
+                        input.value = nama;
+                        autocompleteList.innerHTML = "";
+                    });
+                    autocompleteList.appendChild(item);
+                }
+            });
+        });
+
+        // Tutup daftar saat klik di luar
+        document.addEventListener("click", function (e) {
+            if (e.target !== input) {
+                autocompleteList.innerHTML = "";
+            }
+        });
+
+        // --- Dosen bergantung pada Mata Kuliah ---
+        const dosenPerMatkul = {
+            "Pemrograman Web": ["Dosen A", "Dosen B", "Dosen C"],
+            "Basis Data": ["Dosen D", "Dosen E"],
+            "Struktur Data dan Algoritma": ["Dosen F", "Dosen G", "Dosen H"],
+            "Jaringan Komputer": ["Dosen I", "Dosen J"]
+        };
+
+        const matakuliahSelect = document.getElementById('matakuliah');
+        const dosenSelect = document.getElementById('dosen');
+
+        function updateDosenOptions() {
+            const matkul = matakuliahSelect.value;
+            dosenSelect.innerHTML = "";
+            dosenPerMatkul[matkul].forEach(function(dosen) {
+                const option = document.createElement("option");
+                option.value = dosen;
+                option.textContent = dosen;
+                dosenSelect.appendChild(option);
+            });
+        }
+
+        matakuliahSelect.addEventListener('change', updateDosenOptions);
+
+        // Inisialisasi dosen saat halaman pertama kali dibuka
+        updateDosenOptions();
+    </script>
+</body>
+</html>

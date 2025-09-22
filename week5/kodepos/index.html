@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pencarian Kode Pos Indonesia</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        label { display: block; margin-top: 10px; }
+        select, input[type="text"] { width: 250px; padding: 5px; }
+        #result { margin-top: 20px; padding: 10px; border: 1px solid #ccc; width: 350px; }
+    </style>
+</head>
+<body>
+    <h2>Pencarian Kode Pos Indonesia</h2>
+    <form id="formKodePos" autocomplete="off">
+        <label for="provinsi">Provinsi:</label>
+        <select id="provinsi" required>
+            <option value="">-- Pilih Provinsi --</option>
+            <option value="Jawa Timur">Jawa Timur</option>
+            <option value="Jawa Tengah">Jawa Tengah</option>
+        </select>
+
+        <label for="kabupaten">Kabupaten/Kota:</label>
+        <select id="kabupaten" required>
+            <option value="">-- Pilih Kabupaten/Kota --</option>
+        </select>
+
+        <label for="kecamatan">Kecamatan:</label>
+        <select id="kecamatan" required>
+            <option value="">-- Pilih Kecamatan --</option>
+        </select>
+
+        <button type="submit" style="margin-top:15px;">Cari Kode Pos</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        // Data contoh, bisa dikembangkan lebih banyak
+        const dataKodePos = {
+            "Jawa Timur": {
+                "Surabaya": {
+                    "Tegalsari": { kodepos: "60261", info: "Kecamatan Tegalsari, Kota Surabaya, Jawa Timur" },
+                    "Wonokromo": { kodepos: "60243", info: "Kecamatan Wonokromo, Kota Surabaya, Jawa Timur" }
+                },
+                "Malang": {
+                    "Klojen": { kodepos: "65111", info: "Kecamatan Klojen, Kota Malang, Jawa Timur" },
+                    "Lowokwaru": { kodepos: "65141", info: "Kecamatan Lowokwaru, Kota Malang, Jawa Timur" }
+                }
+            },
+            "Jawa Tengah": {
+                "Semarang": {
+                    "Candisari": { kodepos: "50256", info: "Kecamatan Candisari, Kota Semarang, Jawa Tengah" },
+                    "Tembalang": { kodepos: "50275", info: "Kecamatan Tembalang, Kota Semarang, Jawa Tengah" }
+                },
+                "Solo": {
+                    "Banjarsari": { kodepos: "57139", info: "Kecamatan Banjarsari, Kota Surakarta, Jawa Tengah" },
+                    "Laweyan": { kodepos: "57148", info: "Kecamatan Laweyan, Kota Surakarta, Jawa Tengah" }
+                }
+            }
+        };
+
+        const provinsiSelect = document.getElementById('provinsi');
+        const kabupatenSelect = document.getElementById('kabupaten');
+        const kecamatanSelect = document.getElementById('kecamatan');
+        const resultDiv = document.getElementById('result');
+
+        provinsiSelect.addEventListener('change', function() {
+            kabupatenSelect.innerHTML = '<option value="">-- Pilih Kabupaten/Kota --</option>';
+            kecamatanSelect.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+            resultDiv.innerHTML = '';
+            if (this.value && dataKodePos[this.value]) {
+                Object.keys(dataKodePos[this.value]).forEach(function(kab) {
+                    const opt = document.createElement('option');
+                    opt.value = kab;
+                    opt.textContent = kab;
+                    kabupatenSelect.appendChild(opt);
+                });
+            }
+        });
+
+        kabupatenSelect.addEventListener('change', function() {
+            kecamatanSelect.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+            resultDiv.innerHTML = '';
+            const prov = provinsiSelect.value;
+            if (prov && this.value && dataKodePos[prov][this.value]) {
+                Object.keys(dataKodePos[prov][this.value]).forEach(function(kec) {
+                    const opt = document.createElement('option');
+                    opt.value = kec;
+                    opt.textContent = kec;
+                    kecamatanSelect.appendChild(opt);
+                });
+            }
+        });
+
+        document.getElementById('formKodePos').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const prov = provinsiSelect.value;
+            const kab = kabupatenSelect.value;
+            const kec = kecamatanSelect.value;
+            if (prov && kab && kec && dataKodePos[prov][kab][kec]) {
+                const data = dataKodePos[prov][kab][kec];
+                resultDiv.innerHTML = `<strong>Kode Pos:</strong> ${data.kodepos}<br><strong>Info:</strong> ${data.info}`;
+            } else {
+                resultDiv.innerHTML = '<span style="color:red;">Data tidak ditemukan.</span>';
+            }
+        });
+    </script>
+</body>
+</html>
